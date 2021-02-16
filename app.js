@@ -8,3 +8,13 @@ document.getElementById('addItem').addEventListener('click', event => {
 
   document.getElementById('text').value = ''
 })
+
+document.addEventListener('click', event => {
+  if (event.target.classList.contains('list-group-item')) {
+    if (event.target.classList.contains('active')) {
+      event.target.classList.remove('active')
+    } else {
+      event.target.classList.add('active')
+    }
+  }
+})
