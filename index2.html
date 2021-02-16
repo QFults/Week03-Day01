@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <form>
+    <p>
+      <label for="name">name</label>
+      <input type="text" name="name" id="name">
+    </p>
+    <p>
+      <label for="email">email</label>
+      <input type="email" name="email" id="email">
+    </p>
+    <p>
+      <label for="username">username</label>
+      <input type="text" name="username" id="username">
+    </p>
+    <p>
+      <label for="password">password</label>
+      <input type="password" name="password" id="password">
+    </p>
+    <button id="submit">Submit</button>
+  </form>
+  <hr>
+  <div id="users"></div>
+
+  <script>
+
+    let users = JSON.parse(localStorage.getItem('users')) || []
+
+    users.forEach(user => {
+      let userElem = document.createElement('div')
+      userElem.innerHTML = `
+        <p>${user.name}</p>
+        <p>${user.email}</p>
+        <p>${user.username}</p>
+        <p>${user.password}</p>
+        <hr>
+      `
+      document.getElementById('users').append(userElem)
+    })
+
+    document.getElementById('submit').addEventListener('click', event => {
+      event.preventDefault()
+
+      let user = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+      }
+      users.push(user)
+      localStorage.setItem('users', JSON.stringify(users))
+
+      let userElem = document.createElement('div')
+      userElem.innerHTML = `
+        <p>${user.name}</p>
+        <p>${user.email}</p>
+        <p>${user.username}</p>
+        <p>${user.password}</p>
+        <hr>
+      `
+      document.getElementById('users').append(userElem)
+
+      document.getElementById('name').value = ''
+      document.getElementById('email').value = ''
+      document.getElementById('username').value = ''
+      document.getElementById('password').value = ''
+    })
+
+  </script>
+</body>
+
+</html>
