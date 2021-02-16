@@ -8,28 +8,60 @@
 </head>
 <body>
 
-  <h1 id="display"></h1>
-
+  
   <form>
-    <label for="name">name</label>
-    <input type="text" name="name" id="name">
-    <button id="submit">Submit</button>
+    <p>
+      <label for="name">name</label>
+      <input type="text" name="name" id="name">
+    </p>
+    <p>
+      <label for="email">email</label>
+      <input type="email" name="email" id="email">
+    </p>
+    <p>
+      <label for="username">username</label>
+      <input type="text" name="username" id="username">
+    </p>
+    <p>
+      <label for="password">password</label>
+      <input type="password" name="password" id="password">
+    </p>
+      <button id="submit">Submit</button>
   </form>
   
+  <p id="dispName"></p>
+  <p id="dispEmail"></p>
+  <p id="dispUsername"></p>
+  <p id="dispPassword"></p>
   <script>
 
     // localStorage.setItem('name', 'John Doe')
     // console.log(localStorage.getItem('name'))
 
-    document.getElementById('display').textContent = localStorage.getItem('name')
+    document.getElementById('dispName').textContent = localStorage.getItem('name')
+    document.getElementById('dispEmail').textContent = localStorage.getItem('email')
+    document.getElementById('dispUsername').textContent = localStorage.getItem('username')
+    document.getElementById('dispPassword').textContent = localStorage.getItem('password')
 
     document.getElementById('submit').addEventListener('click', event => {
       event.preventDefault()
 
       localStorage.setItem('name', document.getElementById('name').value)
-      document.getElementById('display').textContent = document.getElementById('name').value
+      document.getElementById('dispName').textContent = document.getElementById('name').value
+
+      localStorage.setItem('email', document.getElementById('email').value)
+      document.getElementById('dispEmail').textContent = document.getElementById('email').value
+
+      localStorage.setItem('username', document.getElementById('username').value)
+      document.getElementById('dispUsername').textContent = document.getElementById('username').value
+
+      localStorage.setItem('password', document.getElementById('password').value)
+      document.getElementById('dispPassword').textContent = document.getElementById('password').value
 
       document.getElementById('name').value = ''
+      document.getElementById('email').value = ''
+      document.getElementById('username').value = ''
+      document.getElementById('password').value = ''
     })
   </script>
 </body>
